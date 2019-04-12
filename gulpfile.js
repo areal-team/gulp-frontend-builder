@@ -12,7 +12,7 @@ const imageMin = require('gulp-imagemin');
 const rigger = require('gulp-rigger');
 const uglify = require('gulp-uglify');
 const autoprefixer = require('gulp-autoprefixer');
-const stripCssComments = require('gulp-strip-css-comments');
+const stripComments = require('gulp-strip-comments');
 
 const path = {
     dist: {
@@ -98,7 +98,7 @@ gulp.task('styles', gulp.series(gulp.parallel('scss', 'css')));
 gulp.task('js:custom', function () {
     return gulp.src(path.src.js.custom)
         .pipe(rigger())
-        .pipe(stripCssComments())
+        .pipe(stripComments())
         .pipe(gulp.dest(path.dist.js));
 });
 
@@ -107,7 +107,7 @@ gulp.task('js:vendor', function () {
         .pipe(rigger())
         .pipe(gulp.dest(path.dist.js))
         .pipe(uglify())
-        .pipe(stripCssComments()) // точно ли удаляет комменты
+        .pipe(stripComments())
         .pipe(gulp.dest(path.dist.js));
 });
 
